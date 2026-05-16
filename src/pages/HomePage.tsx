@@ -95,7 +95,7 @@ export default function HomePage() {
 
   const { data: specsData, isLoading } = useQuery({
     queryKey: ['specializations'],
-    queryFn:  () => doctorApi.getSpecializations().then(r => r.data.data ?? []),
+    queryFn:  () => doctorApi.getSpecializations().then(r => r.data.data ?? r.data ?? []),
   })
 
   const specs: Specialization[] = specsData ?? []

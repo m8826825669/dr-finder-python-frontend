@@ -37,7 +37,7 @@ function SpecializationsPage() {
   const navigate = useNavigate()
   const { data, isLoading } = useQuery({
     queryKey: ['specializations'],
-    queryFn:  () => doctorApi.getSpecializations().then(r => r.data.data ?? []),
+    queryFn:  () => doctorApi.getSpecializations().then(r => r.data.data ?? r.data ?? []),
   })
 
   return (

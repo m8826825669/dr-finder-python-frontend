@@ -18,7 +18,7 @@ const SORT_OPTIONS = [
 export default function SearchPage() {
   const [searchParams, setSearchParams] = useSearchParams()
   const [showFilters, setShowFilters]   = useState(false)
-  const [page, setPage] = useState(0)
+  const [page, setPage] = useState(1)
 
   const [filters, setFilters] = useState({
     q:                 searchParams.get('q') || '',
@@ -47,18 +47,17 @@ export default function SearchPage() {
   const { data, isLoading, isFetching } = useQuery({
     queryKey: ['doctors-search', params],
     queryFn: () => doctorApi.search(params).then(r => r.data.data ?? r.data),
-    keepPreviousData: true,
   })
 
   const doctors    = data?.results ?? []
   const total      = data?.total ?? 0
   const totalPages = data?.total_pages ?? 1
 
-  const setFilter = (key, val) => { setFilters(f => ({ ...f, [key]: val })); setPage(0) }
+  const setFilter = (key, val) => { setFilters(f => ({ ...f, [key]: val })); setPage(1) }
 
   const clearFilters = () => {
     setFilters({ q:'', city:'', specialization_id:'', min_fee:'', max_fee:'', min_rating:'', min_experience:'', gender:'', available_for_video:'', accepting_new_patients:'', is_verified:'', sort_by:'relevance' })
-    setPage(0)
+    setPage(1)
   }
 
   const activeFilterCount = Object.entries(filters)
