@@ -161,3 +161,42 @@ export interface SelectOption {
   value: string | number
   label: string
 }
+
+// ─── Admin ────────────────────────────────────────────────────────────
+// Flexible shape — backend field names verified post-deploy. Page uses
+// defensive lookup so unknown fields don't break rendering.
+export interface AdminStats {
+  total_doctors?: number
+  total_patients?: number
+  total_appointments?: number
+  verified_doctors?: number
+  pending_verification?: number
+  total_revenue?: number
+  total_reviews?: number
+  avg_rating?: number
+  [key: string]: number | string | undefined
+}
+
+// ─── Doctor Profile Create/Update payload ─────────────────────────────
+export interface DoctorProfileRequest {
+  specialization_id?:   number
+  registration_number?: string
+  gender?:              Gender
+  bio?:                 string
+  languages?:           string[]
+  experience_years?:    number
+  qualifications?:      Qualification[]
+  consultation_fee?:    number
+  video_fee?:           number | null
+  follow_up_fee?:       number | null
+  clinic_name?:         string
+  clinic_address?:      string
+  city?:                string
+  state?:               string
+  pincode?:             string
+  latitude?:            number
+  longitude?:           number
+  available_for_video?: boolean
+  available_for_home?:  boolean
+  accepting_new_patients?: boolean
+}

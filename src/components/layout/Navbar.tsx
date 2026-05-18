@@ -24,7 +24,7 @@ export default function Navbar() {
 
   const dashboardPath =
     user?.role === 'doctor' ? '/doctor/dashboard' :
-    user?.role === 'admin'  ? '/patient/dashboard' :
+    user?.role === 'admin'  ? '/admin' :
     '/patient/dashboard'
 
   return (

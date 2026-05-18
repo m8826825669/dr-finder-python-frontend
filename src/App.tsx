@@ -16,6 +16,7 @@ import LoginPage         from './pages/auth/LoginPage'
 import RegisterPage      from './pages/auth/RegisterPage'
 import PatientDashboard  from './pages/dashboard/PatientDashboard'
 import DoctorDashboard   from './pages/dashboard/DoctorDashboard'
+import AdminDashboard    from './pages/dashboard/AdminDashboard'
 import NotificationsPage from './pages/NotificationsPage'
 import type { UserRole } from './types'
 
@@ -87,10 +88,15 @@ function AppRoutes() {
           element={<Protected><NotificationsPage /></Protected>} />
 
         <Route path="/patient/dashboard"
-          element={<Protected roles={['patient', 'admin']}><PatientDashboard /></Protected>} />
+          element={<Protected roles={['patient']}><PatientDashboard /></Protected>} />
 
         <Route path="/doctor/dashboard"
           element={<Protected roles={['doctor']}><DoctorDashboard /></Protected>} />
+
+        <Route path="/admin"
+          element={<Protected roles={['admin']}><AdminDashboard /></Protected>} />
+        <Route path="/admin/*"
+          element={<Protected roles={['admin']}><AdminDashboard /></Protected>} />
 
         <Route path="*" element={
           <div className="text-center py-24">

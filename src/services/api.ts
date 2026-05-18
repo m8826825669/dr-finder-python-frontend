@@ -81,6 +81,9 @@ export const doctorApi = {
   updateProfile: (body: Partial<DoctorProfileRequest>) =>
     api.put<ApiResponse<DoctorDetail>>('/doctors/profile', body),
 
+  getMyProfile: () =>
+    api.get<ApiResponse<DoctorDetail | null>>('/doctors/profile/me'),
+
   getReviews: (id: number | string, params?: { page?: number; page_size?: number }) =>
     api.get<ApiResponse<PageResponse<Review>>>(`/doctors/${id}/reviews`, { params }),
 
